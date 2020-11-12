@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shoppApp/providers/product_provider.dart';
+import 'package:shoppApp/providers/cart.dart';
+import 'package:shoppApp/screens/cart_screen.dart';
+import 'package:shoppApp/widgets/badge.dart';
 import 'package:shoppApp/widgets/products_grid.dart';
 import '../widgets/products_grid.dart';
 
@@ -24,6 +26,20 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       appBar: AppBar(
         title: Text('My ShoppApp'),
         actions: <Widget>[
+          Consumer<Cart>(
+            builder: (_, cartData, chld) => Badge(
+              child: chld,
+              value: cartData.itemCount.toString(),
+              color: Color(0xFFFFFFFF),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
+              color: Color(0xFFFFFFFF),
+            ),
+          ),
           PopupMenuButton(
             onSelected: (FilterOptions option) {
               setState(() {
