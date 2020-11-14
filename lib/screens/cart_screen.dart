@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoppApp/providers/cart.dart' show Cart;
 import 'package:shoppApp/providers/orders.dart';
+import 'package:shoppApp/screens/orders_screen.dart';
 import 'package:shoppApp/widgets/cart_item.dart';
 
 class CartScreen extends StatelessWidget {
@@ -54,6 +55,12 @@ class CartScreen extends StatelessWidget {
                       Provider.of<Orders>(context, listen: false).addOrder(
                           cart.items.values.toList(), cart.totalAmount);
                       cart.clearCart();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrdersScreen(),
+                        ),
+                      );
                     },
                     child: Text('Order now'),
                     textColor: Theme.of(context).accentColor,
