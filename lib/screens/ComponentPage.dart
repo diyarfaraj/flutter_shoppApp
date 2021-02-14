@@ -28,8 +28,9 @@ class _ComponentPageState extends State<ComponentPage> {
     );
   }
 
-  _saveSerialsToDatabase(List<Component> components) {
+  Future<void> _saveSerialsToDatabase(List<Component> components) async {
     components.forEach((component) {
+      //await SEND SERIAL TO DB
       print("kiosk: " + component.kioskSerial);
       print("component: " + component.componentSerial);
     });
